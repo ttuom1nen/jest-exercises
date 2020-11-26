@@ -1,11 +1,12 @@
 const fetch = require("node-fetch");
 const swapi = require("./script2");
 
-it("calls swapi to get people", (done) => {
+it("calls swapi to get people", () => {
   // expect.assertions() good to use with async tests
-  expect.assertions(1)
-  swapi.getPeopleAsync(fetch).then(data => {
+  // expect is an assertion
+  expect.assertions(2)
+  return swapi.getPeopleAsync(fetch).then(data => {
     expect(data.count).toEqual(82)
-    done();
+    expect(data.results.length).toBeGreaterThan(5)
   })
 })
